@@ -4,7 +4,11 @@ html, body {
 }
 
 #map-wrapper {
-  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+  width: 100vw;  /* Dwing de breedte exact naar het scherm van de telefoon */
+  height: 100vh; /* Dwing de hoogte exact naar het scherm van de telefoon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #panzoom-element {
@@ -19,7 +23,8 @@ html, body {
 
 .base-map {
   display: block;
-  width: 100%;
+  width: 100%;     /* Zorgt dat de kaart nooit breder wordt dan het Bravo frame */
+  max-width: 100%; 
   height: auto;
   pointer-events: none;
 }
