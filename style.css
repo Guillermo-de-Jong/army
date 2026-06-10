@@ -49,11 +49,11 @@ html, body {
 /* UNIEKE STYLING PER GEBOUW-CLASS (Pas de % aan voor de juiste schaal) */
 .gebouw-amstel-hotel     { width: 15%; }
 .gebouw-amstelhaven      { width: 3%; }
-.gebouw-bb-sleep         { width: 2,5%; }
+.gebouw-bb-sleep         { width: 2.5%; }
 .gebouw-bakhuys          { width: 5%; }
 .gebouw-bar-lempicka     { width: 4%; }
-.gebouw-bistro-baret     { width: 1,5%; }
-.gebouw-bistro-bonjour   { width: 1,8%; }
+.gebouw-bistro-baret     { width: 1.5%; }
+.gebouw-bistro-bonjour   { width: 1.8%; }
 .gebouw-cafe-noir        { width: 3%; }
 .gebouw-capital-kitchen  { width: 9%; }
 .gebouw-carre            { width: 12%; }
