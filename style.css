@@ -4,17 +4,21 @@ html, body {
 }
 
 #map-wrapper {
-  width: 100vw;  /* Dwing de breedte exact naar het scherm van de telefoon */
-  height: 100vh; /* Dwing de hoogte exact naar het scherm van de telefoon */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: #f8f9fa; 
 }
 
 #panzoom-element {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: inline-block;
   cursor: grab;
+  /* Belangrijk: transform-origin zorgt dat alles vanuit het midden schaalt */
+  transform-origin: center center; 
 }
 
 #panzoom-element:active {
@@ -23,9 +27,8 @@ html, body {
 
 .base-map {
   display: block;
-  width: 100%;     /* Zorgt dat de kaart nooit breder wordt dan het Bravo frame */
-  max-width: 100%; 
-  height: auto;
+  width: 100vw; /* De basisbreedte is exact het scherm */
+  height: auto; /* De hoogte schaalt proportioneel mee */
   pointer-events: none;
 }
 

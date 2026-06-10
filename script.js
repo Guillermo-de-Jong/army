@@ -33,13 +33,22 @@ buildingsData.forEach(building => {
 });
 
 // 3. INITIALISEER PANZOOM (ZOOMEN EN SLEPEN)
+// INITIALISEER PANZOOM (Aangepast voor automatische zoom zonder witruimte)
 const element = document.getElementById('panzoom-element');
 const panzoom = Panzoom(element, {
-  maxScale: 5,
-  minScale: 1,
-  contain: 'outside',
-  startScale: 1
+  maxScale: 6,         // Maximaal 6x inzoomen
+  minScale: 1.5,       // De minimale zoom (zet dit iets hoger dan 1 om witruimte te voorkomen bij uitzoomen)
+  startScale: 2,       // START DIRECT OP 2X ZO GROOT! (Dit lost je probleem op)
+  contain: 'outside',  // Dwingt panzoom om NOOIT witruimte buiten de kaart te tonen
+  cursor: 'grab'
 });
+
+// Zorg dat Panzoom direct naar het midden van de kaart springt bij het laden
+setTimeout(() => {
+  panzoom.pan(0, 0);
+}, 50);
+
+element.parentElement.addEventListener('wheel', panzoom.zoomWithWheel);
 
 element.parentElement.addEventListener('wheel', panzoom.zoomWithWheel);
 
