@@ -57,3 +57,27 @@ html, body {
 .gebouw-cafe-noir        { width: 3%; }
 .gebouw-capital-kitchen  { width: 9%; }
 .gebouw-carre            { width: 12%; }
+
+
+/* Set 2 (11 t/m 20) */
+.gebouw-concern-congres     { width: 10%; }
+.gebouw-hapjeshoek          { width: 2.5%; }
+.gebouw-mozaiekmakers       { width: 2.5%; }
+.gebouw-fashion-boulevard   { width: 6%; }
+.gebouw-fiaschetteria       { width: 2%; }
+.gebouw-fotoschool          { width: 4%; }
+.gebouw-frederik-park       { width: 1.2%; }
+.gebouw-guesthouse          { width: 1.8%; }
+.gebouw-hotel-hermitage     { width: 1.3%; }
+.gebouw-hva                 { width: 23%; }
+
+
+/* Set 3 (21 t/m 28) */
+.gebouw-ocker                 { width: 1.8%; }
+.gebouw-onbekend-2            { width: 2%; }
+.gebouw-petit-lou             { width: 7%; }
+.gebouw-protestantse-diaconie { width: 1.2%; }
+.gebouw-chez-fabrice          { width: 3.4%; }
+.gebouw-utrechtsedwarstafel   { width: 1.8%; }
+.gebouw-van-soest             { width: 6.5%; }
+.gebouw-zoku                  { width: 7%; }
