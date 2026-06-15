@@ -40,7 +40,7 @@ const existingLeadIds = [
  
 // 3. BRAVO SCREEN NAMEN
 // Gebruik exact de namen zoals ze links in Bravo bij Screens staan.
-const detailScreen = "detail - succesvol";
+const detailScreen = "01KV5EFB3TE767MQCQ10XDRSKT";
 const createLeadScreen = "Lead_aanmaken";
  
 // 4. GENEREER DE GEBOUWEN OP DE KAART
@@ -89,9 +89,14 @@ function navigateInBravo(screenName, buildingId) {
  
   console.log("Bravo goto message:", message);
  
-  if (window.bravo && typeof window.bravo.postMessage === "function") {
+if (window.bravo && typeof window.bravo.postMessage === "function") {
+
+    alert(JSON.stringify(message));
+
     window.bravo.postMessage(message);
-  } else {
+
+}
+  else {
     alert("window.bravo is niet beschikbaar. Test dit binnen Bravo.");
   }
 }
