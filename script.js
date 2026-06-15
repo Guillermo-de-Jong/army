@@ -79,21 +79,21 @@ element.parentElement.addEventListener("wheel", panzoom.zoomWithWheel);
  
 // 6. FUNCTIE: STUUR ACTIE NAAR BRAVO
 function navigateInBravo(screenName, buildingId) {
-  console.log("window.bravo:", window.bravo);
+  const message = {
+    action: "goto",
+    params: {
+      href: screenName,
+      buildingId: buildingId
+    }
+  };
  
-  console.log(
-    "webkit:",
-    window.webkit,
-    window.webkit?.messageHandlers,
-    window.webkit?.messageHandlers?.bravo
-  );
+  console.log("Bravo goto message:", message);
  
-  alert(
-    "bravo=" + !!window.bravo +
-    "\nwebkit=" + !!window.webkit +
-    "\nhandlers=" + !!window.webkit?.messageHandlers +
-    "\nbravoHandler=" + !!window.webkit?.messageHandlers?.bravo
-  );
+  if (window.bravo && typeof window.bravo.postMessage === "function") {
+    window.bravo.postMessage(message);
+  } else {
+    alert("window.bravo is niet beschikbaar. Test dit binnen Bravo.");
+  }
 }
 
 
