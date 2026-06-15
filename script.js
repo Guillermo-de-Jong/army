@@ -89,16 +89,7 @@ function navigateInBravo(screenName, buildingId) {
  
   console.log("Bravo goto message:", message);
  
-if (window.bravo && typeof window.bravo.postMessage === "function") {
 
-    alert(JSON.stringify(message));
-
-    window.bravo.postMessage(message);
-
-}
-  else {
-    alert("window.bravo is niet beschikbaar. Test dit binnen Bravo.");
-  }
 }
 
 
