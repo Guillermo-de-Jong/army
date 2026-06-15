@@ -87,9 +87,9 @@ function navigateInBravo(screenName, buildingId) {
     }
   };
  
-  console.log("Bravo goto message:", message);
- 
-
+  if (window.bravo && typeof window.bravo.postMessage === "function") {
+    window.bravo.postMessage(message);
+  }
 }
 
 
