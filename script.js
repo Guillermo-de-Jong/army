@@ -79,34 +79,24 @@ element.parentElement.addEventListener("wheel", panzoom.zoomWithWheel);
  
 // 6. FUNCTIE: STUUR ACTIE NAAR BRAVO
 function navigateInBravo(screenName, buildingId) {
-  const message = {
-    action: "goto",
-    params: {
-      href: screenName,
-      buildingId: buildingId
-    }
-  };
+  console.log("window.bravo:", window.bravo);
  
-  console.log("Bravo message:", message);
+  console.log(
+    "webkit:",
+    window.webkit,
+    window.webkit?.messageHandlers,
+    window.webkit?.messageHandlers?.bravo
+  );
  
-  if (window.bravo && typeof window.bravo.postMessage === "function") {
-    window.bravo.postMessage(message);
-    return;
-  }
- 
-  // fallback/test voor sommige Bravo WebViews
-  if (
-    window.webkit &&
-    window.webkit.messageHandlers &&
-    window.webkit.messageHandlers.bravo
-  ) {
-    window.webkit.messageHandlers.bravo.postMessage(message);
-    return;
-  }
- 
-  alert("Klik werkt, maar Bravo WebView Communication is hier niet beschikbaar. Test dit in Bravo Vision.");
+  alert(
+    "bravo=" + !!window.bravo +
+    "\nwebkit=" + !!window.webkit +
+    "\nhandlers=" + !!window.webkit?.messageHandlers +
+    "\nbravoHandler=" + !!window.webkit?.messageHandlers?.bravo
+  );
 }
- 
+
+
 // 7. CLICK INTERACTION
 buildingsContainer.addEventListener("click", function(event) {
   const clickedImg = event.target.closest("img");
