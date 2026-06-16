@@ -6,7 +6,7 @@ const buildingsData = [
   { id: "amstelhaven",            className: "gebouw-amstelhaven",            fileName: "Amstelhaven.png",                          top: "75%",       left: "16%" },
   { id: "bb-sleep",               className: "gebouw-bb-sleep",               fileName: "B&B Sleep in Amsterdam.png",               top: "12%",       left: "19%" },
   { id: "bakhuys",                className: "gebouw-bakhuys",                fileName: "Bakhuys Amsterdam.png",                    top: "52%",       left: "49%" },
-  { id: "bar-lempicka",           airtableId: "rec0kpreHOgzABjEi",                  className: "gebouw-bar-lempicka",           fileName: "Bar Lempicka.png",                         top: "44.6%",     left: "32.9%" },
+  { id: "bar-lempicka",           className: "gebouw-bar-lempicka",           fileName: "Bar Lempicka.png",                         top: "44.6%",     left: "32.9%" },
   { id: "bistro-baret",           className: "gebouw-bistro-baret",           fileName: "Bistro Baret.png",                         top: "34.1%",     left: "45.5%" },
   { id: "bistro-bonjour",         className: "gebouw-bistro-bonjour",         fileName: "Bistro Bonjour.png",                       top: "7.5%",      left: "21.5%" },
   { id: "cafe-noir",              className: "gebouw-cafe-noir",              fileName: "Café Noir.png",                            top: "57%",       left: "75.7%" },
@@ -38,8 +38,9 @@ const existingLeadIds = [
   "zoku"
 ];
  
-// 3. BRAVO SCREEN NAMEN
-// Gebruik exact de namen zoals ze links in Bravo bij Screens staan.
+// 3. BRAVO IDS
+const appId = "01KV5EFB24PNREPVTS1G1MMY9R";
+ 
 const detailScreen = "01KV7MM1JC9ZYY628B2SS890D9";
 const createLeadScreen = "01KV7MM1KDCTPK3F5E973E43SZ";
  
@@ -77,16 +78,23 @@ setTimeout(() => {
  
 element.parentElement.addEventListener("wheel", panzoom.zoomWithWheel);
  
-// 6. FUNCTIE: STUUR ACTIE NAAR BRAVO
-function navigateInBravo(screenName, airtableId) {
+// 6. FUNCTIE: STUUR ACTIE NAAR BRAVO MET BUILDING PARAMETER
+function navigateInBravo(screenId, buildingId) {
+  const paramsString = btoa(JSON.stringify({
+    buildingId: buildingId
+  }));
+ 
+  const hrefRemote =
+    `https://apps-service.bravostudio.app/devices/apps/${appId}/node/${screenId}?params=${paramsString}`;
+ 
   const message = {
     action: "goto",
     params: {
-      href: screenName,
-      id: airtableId
+      href: screenId,
+      hrefRemote: hrefRemote
     }
   };
-
+ 
   if (window.bravo && typeof window.bravo.postMessage === "function") {
     window.bravo.postMessage(message);
   }
@@ -104,17 +112,8 @@ buildingsContainer.addEventListener("click", function(event) {
  
  
   if (isExistingLead) {
-
-  const building = buildingsData.find(
-    b => b.id === buildingId
-  );
-
-  navigateInBravo(
-    detailScreen,
-    building.airtableId
-  );
-
-} else {
+    navigateInBravo(detailScreen, buildingId);
+  } else {
     navigateInBravo(createLeadScreen, buildingId);
   }
 });
