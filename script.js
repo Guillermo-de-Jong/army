@@ -6,7 +6,7 @@ const buildingsData = [
   { id: "amstelhaven",            className: "gebouw-amstelhaven",            fileName: "Amstelhaven.png",                          top: "75%",       left: "16%" },
   { id: "bb-sleep",               className: "gebouw-bb-sleep",               fileName: "B&B Sleep in Amsterdam.png",               top: "12%",       left: "19%" },
   { id: "bakhuys",                className: "gebouw-bakhuys",                fileName: "Bakhuys Amsterdam.png",                    top: "52%",       left: "49%" },
-  { id: "bar-lempicka",           className: "gebouw-bar-lempicka",           fileName: "Bar Lempicka.png",                         top: "44.6%",     left: "32.9%" },
+  { id: "bar-lempicka",           airtableId: "rec0kpreHOgzABjEi",                  className: "gebouw-bar-lempicka",           fileName: "Bar Lempicka.png",                         top: "44.6%",     left: "32.9%" },
   { id: "bistro-baret",           className: "gebouw-bistro-baret",           fileName: "Bistro Baret.png",                         top: "34.1%",     left: "45.5%" },
   { id: "bistro-bonjour",         className: "gebouw-bistro-bonjour",         fileName: "Bistro Bonjour.png",                       top: "7.5%",      left: "21.5%" },
   { id: "cafe-noir",              className: "gebouw-cafe-noir",              fileName: "Café Noir.png",                            top: "57%",       left: "75.7%" },
@@ -78,15 +78,15 @@ setTimeout(() => {
 element.parentElement.addEventListener("wheel", panzoom.zoomWithWheel);
  
 // 6. FUNCTIE: STUUR ACTIE NAAR BRAVO
-function navigateInBravo(screenName, buildingId) {
+function navigateInBravo(screenName, airtableId) {
   const message = {
     action: "goto",
     params: {
       href: screenName,
-      buildingId: buildingId
+      id: airtableId
     }
   };
- 
+
   if (window.bravo && typeof window.bravo.postMessage === "function") {
     window.bravo.postMessage(message);
   }
@@ -104,8 +104,17 @@ buildingsContainer.addEventListener("click", function(event) {
  
  
   if (isExistingLead) {
-    navigateInBravo(detailScreen, buildingId);
-  } else {
+
+  const building = buildingsData.find(
+    b => b.id === buildingId
+  );
+
+  navigateInBravo(
+    detailScreen,
+    building.airtableId
+  );
+
+} else {
     navigateInBravo(createLeadScreen, buildingId);
   }
 });
