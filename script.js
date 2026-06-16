@@ -102,8 +102,6 @@ buildingsContainer.addEventListener("click", function(event) {
   const buildingId = clickedImg.getAttribute("data-id");
   const isExistingLead = existingLeadIds.includes(buildingId);
  
-  console.log("Gebouw geklikt:", buildingId);
-  alert("Gebouw geklikt: " + buildingId);
  
   if (isExistingLead) {
     navigateInBravo(detailScreen, buildingId);
